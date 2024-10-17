@@ -1,5 +1,5 @@
 local dir = "client/%s/%s.lua"
-local resource = "peuren_lib"
+local resource = "cb_lib"
 
 function LoadModule(module, selection)
     local chunk = LoadResourceFile(resource, dir:format(module, string.lower(selection)))
@@ -7,7 +7,7 @@ function LoadModule(module, selection)
         return error(("Couldn't load module file: %s - %s"):format(module, string.lower(selection)), 3)
     end
 
-    local fn, err = load(chunk, ("@@peuren_lib/client/%s/%s.lua"):format(module, string.lower(selection)))
+    local fn, err = load(chunk, ("@@cb_lib/client/%s/%s.lua"):format(module, string.lower(selection)))
 
     if not fn and err then
         return error(("Error loading module: %s - %s"):format(module, string.lower(selection)), 3)
@@ -38,7 +38,7 @@ Core.Print = Utils.Print
 
 Core.LoadLocales()
 
-RegisterNetEvent("peuren_lib:notify", function(title, desc, type)
+RegisterNetEvent("cb_lib:notify", function(title, desc, type)
     Core.Notify(title, desc, type)
 end)
 

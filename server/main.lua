@@ -1,5 +1,5 @@
 local dir = "server/%s/%s.lua"
-local resource = "peuren_lib"
+local resource = "cb_lib"
 
 function LoadModule(module, selection)
     local chunk = LoadResourceFile(resource, dir:format(module, string.lower(selection)))
@@ -7,7 +7,7 @@ function LoadModule(module, selection)
         return error(("Couldn't load module file: %s - %s"):format(module, string.lower(selection)), 3)
     end
 
-    local fn, err = load(chunk, ("@@peuren_lib/server/%s/%s.lua"):format(module, string.lower(selection)))
+    local fn, err = load(chunk, ("@@cb_lib/server/%s/%s.lua"):format(module, string.lower(selection)))
 
     if not fn and err then
         return error(("Error loading module: %s - %s"):format(module, string.lower(selection)), 3)
@@ -53,7 +53,7 @@ function VersionCheck(repository)
 	end)
 end
 
-VersionCheck('Peuren/peuren_lib')
+VersionCheck('cbdev9/cb_lib')
 
 Core = {}
 Core.Framework = LoadModule("framework", Config.Framework)
@@ -67,7 +67,7 @@ Core.GetLocales = getLocales
 Core.Locale = locale
 Core.Print = Utils.Print
 
-Core.Framework.RegisterCallback("peuren_lib:GetSkillData", function(source, cb)
+Core.Framework.RegisterCallback("cb_lib:GetSkillData", function(source, cb)
     local skillData = {}
 
     if GetResourceState("peuren_fishing") == "started" then
