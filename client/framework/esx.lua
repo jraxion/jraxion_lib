@@ -33,7 +33,10 @@ Framework = {
     end,
     GetVehicleProperties = function (vehicle)
         return ESX.Game.GetVehicleProperties(vehicle)
-    end
+    end,
+    SetVehicleProperties = function (vehicle, data)
+        return ESX.Game.SetVehicleProperties(vehicle, data)
+    end,
 }
 
 AddEventHandler('esx:onPlayerSpawn', function()

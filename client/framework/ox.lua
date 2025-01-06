@@ -15,7 +15,10 @@ Framework = {
     end,
     GetVehicleProperties = function (vehicle)
         return lib.getVehicleProperties(vehicle)
-    end
+    end,
+    SetVehicleProperties = function (vehicle, data)
+        return lib.setVehicleProperties(vehicle, data)
+    end,
 }
 
 AddEventHandler('esx:onPlayerSpawn', function()
