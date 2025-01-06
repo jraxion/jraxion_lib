@@ -17,6 +17,10 @@ Framework = {
 
     SpawnVehicle = function(model, pos, cb, networked)
         QBCore.Functions.SpawnVehicle(model, cb, pos, networked)
+    end,
+
+    GetVehicleProperties = function (vehicle)
+        return QBCore.Functions.GetVehicleProperties(vehicle)
     end
 }
 

@@ -30,6 +30,9 @@ Framework = {
 
     SpawnVehicle = function(model, pos, cb, networked)
         ESX.Game.SpawnVehicle(model, pos, heading, cb, networked)
+    end,
+    GetVehicleProperties = function (vehicle)
+        return ESX.Game.GetVehicleProperties(vehicle)
     end
 }
 
