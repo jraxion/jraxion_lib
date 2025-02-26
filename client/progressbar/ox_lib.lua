@@ -1,5 +1,5 @@
 ProgressBar = function(label, time, options)
-    local anim = false
+    local anim = nil
     
     if options.animation then
         anim = {
