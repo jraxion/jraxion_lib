@@ -17,6 +17,10 @@ Inventory = {
         xPlayer.removeInventoryItem(item, amount)
         return true
     end,
+    CanCarryItem = function(source, item, amount)
+        local xPlayer = ESX.GetPlayerFromId(source)
+        return xPlayer.canCarryItem(item, amount)
+    end,
     GetItem = function(source, item)
         local xPlayer = ESX.GetPlayerFromId(source)
         return xPlayer.getInventoryItem(item)

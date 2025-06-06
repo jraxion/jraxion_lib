@@ -56,6 +56,7 @@ end
 VersionCheck('cbdev9/jraxion_lib')
 
 Core = {}
+Core.Locale = locale
 Core.Framework = LoadModule("framework", Config.Framework)
 Core.Database = LoadModule("database", Config.SQLConnector)
 Core.Inventory = LoadModule("inventory", Config.Inventory)
@@ -64,8 +65,8 @@ Core.Groups = Groups
 Core.Version = VersionCheck
 Core.LoadLocales = loadLocales
 Core.GetLocales = getLocales
-Core.Locale = locale
 Core.Print = Utils.Print
+Core.LoadLocales()
 
 Core.Framework.RegisterCallback("jraxion_lib:GetSkillData", function(source, cb)
     local skillData = {}

@@ -7,7 +7,13 @@ Inventory = {
         return "NO_LABEL"
     end,
     AddCarriableItem = CarryItems.AddCarriableItem,
-    RemoveCarriableItem = CarryItems.RemoveCarriableItem
+    RemoveCarriableItem = CarryItems.RemoveCarriableItem,
+    OpenStash = function(stashName, maxWeight, slots)
+        TriggerServerEvent('inventory:server:OpenInventory', 'stash', stashName,  {
+            maxweight = maxWeight,
+            slots = slots
+        })
+    end
 }
 
 if Config.Framework == 'esx' then 

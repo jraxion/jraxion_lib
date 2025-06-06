@@ -1,6 +1,6 @@
 Config = {}
 
-Config.Debug = true -- Adds additional prints and enables all other resource debug options | true or false
+Config.Debug = false -- Adds additional prints and enables all other resource debug options | true or false
 Config.Language = 'en' -- Language file name, this means, that it will only load files from script locales folders that contain this name, 
                        -- if this is an invalid locale name on a resource it will default to english
 
@@ -31,6 +31,7 @@ Config.CarryItemsEnabled = true -- Should the Carry Items system be enabled
     mf-inventory
     esx_inventory
     qb-inventory
+    qb-inventory-new (for new versions of qb-inventory)
     ox_inventory
     qs-inventory
     tgiann-inventory
@@ -47,13 +48,13 @@ Config.TargetResource = 'ox_target' -- The inventory system folder name that you
     qtarget
 ]]
 
-Config.ProgessBar = 'ox_lib' -- ox_lib / qb
+Config.ProgessBar = 'ox_lib'
 Config.ProgessBarResource = 'ox_lib' -- The menu system folder name that you're using
 --SUPPORTED PROGRESS BAR SCRIPT NAMES TO PUT IN: Config.ProgessBar = ""
 --[[
     ox_lib - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
     qb
-    tgiann-lumihud
+    tgiann
 ]]
 
 Config.Menu = 'ox_lib'
@@ -110,7 +111,9 @@ Config.NotificationsResource = "ox_lib" -- The notification system folder name t
     okok
     mythic
     s1n_notify
-    tgiann-lumihud
+    tgiann
+    k5_notify
+    vms_notifyv2
 ]]
 
 Config.WeatherSync = 'qb-weathersync'
@@ -156,6 +159,8 @@ Config.FuelResource = 'LegacyFuel' -- The fuel system resource folder name
     xFuel
     rcore_fuel
     qs-fuelstations
+    lc_fuel
+    sgx-fuel
 ]]
 
 Config.VehicleKeys = 'qb-vehiclekeys'
@@ -179,6 +184,7 @@ Config.VehicleKeysResource = 'qb-vehiclekeys' -- The vehicle key system resource
     tgiann-hotwire
     dusa_vehiclekeys
     Renewed-Vehiclekeys
+    ak47_vehiclekeys
 ]]
 
 Config.Clothing = 'qb-clothing'

@@ -5,6 +5,9 @@ Inventory = {
     RemoveItem = function(source, item, amount, metadata)
         return exports[Config.InventoryResource]:RemoveItem(source, item, amount, nil, metadata)
     end,
+    CanCarryItem = function(source, item, amount)
+        return exports[Config.InventoryResource]:canCarryItem(source, item, amount)
+    end,
     GetItem = function(source, item, metadata)
         local itemData = exports[Config.InventoryResource]:GetItem(source, item, metadata, true)
         if not itemData then return nil end
@@ -15,16 +18,18 @@ Inventory = {
         }
     end,
     GetItems = function(source)
-        local items = exports[Config.InventoryResource]:GetInventory(source)
-        if not items then return {} end
+        local data = exports[Config.InventoryResource]:GetInventory(source)
+        if not data then return {} end
 
         local formattedItems = {}
-        for k, v in pairs(items) do
-            formattedItems[#formattedItems+1] = {
-                item = v.name,
-                count = v.count,
-                metadata = v.metadata,
-            }
+        for k, v in pairs(data.inventory) do
+            if v.name then
+                formattedItems[#formattedItems+1] = {
+                    item = v.name,
+                    count = v.amount,
+                    metadata = v.metadata,
+                }
+            end
         end
         return formattedItems
     end,
@@ -37,7 +42,7 @@ Inventory = {
 }
 
 Core.Framework.RegisterCallback("peuren_lib:GetPlayerInventory", function(player, cb)
-    cb(exports[Config.InventoryResource]:GetInventory(player))
+    cb(Inventory.GetItems(player))
 end)
 
 Core.Framework.RegisterCallback("peuren_lib:inventory:RegisterStash", function(player, cb, data)

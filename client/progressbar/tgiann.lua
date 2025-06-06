@@ -13,7 +13,7 @@ ProgressBar = function(label, time, options)
             combat = options.disableCombat,
             mouse = options.disableMouse,
         },
-        animation = options.animation,
+        animation = options.animation, 
         prop = {},
         propTwo = {},
     }, function(cancelled)

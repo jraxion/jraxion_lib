@@ -38,6 +38,35 @@ Target = {
             distance = distance
         })
     end,
+    AddNetworkedEntity = function(entities, options, distance)
+        if type(entities) == 'table' then
+            for k,v in pairs(entities) do 
+                if not DoesEntityExist(v) and NetworkDoesEntityExistWithNetworkId(v) then
+                    entities[k] = NetworkGetEntityFromNetworkId(v)
+                end
+            end
+        else
+            if not DoesEntityExist(entities) and NetworkDoesEntityExistWithNetworkId(entities) then 
+                entities = NetworkGetEntityFromNetworkId(entities)
+            end
+        end
+
+        local tOptions = {}
+        for k, v in pairs(options) do
+            tOptions[#tOptions + 1] = {
+                icon = v.icon,
+                label = v.label,
+                item = v.item,
+                canInteract = v.canInteract,
+                action = v.onSelect,
+                job = Target.FormatJobs(v.jobs),
+            }
+        end
+        return exports[Config.TargetResource]:AddTargetEntity(entities, {
+            options = tOptions,
+            distance = distance
+        })
+    end,
     AddBone = function(bones, options, distance)
         local tOptions = {}
         for k, v in pairs(options) do

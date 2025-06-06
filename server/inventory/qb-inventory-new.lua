@@ -16,6 +16,9 @@ Inventory = {
         TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items[item], 'remove', amount)
         return Player.Functions.RemoveItem(item, amount, slot)
     end,
+    CanCarryItem = function(source, item, amount)
+        return exports[Config.InventoryResource]:CanAddItem(source, item, amount)
+    end,
     GetItem = function(source, item, metadata)
         local Player = QBCore.Functions.GetPlayer(source)
         if not metadata then

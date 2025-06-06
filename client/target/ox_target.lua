@@ -35,6 +35,23 @@ Target = {
         end
         return exports[Config.TargetResource]:addLocalEntity(entities, tOptions)
     end,
+    AddNetworkedEntity = function(netId, options, distance)
+        local tOptions = {}
+        for k, v in pairs(options) do
+            tOptions[#tOptions + 1] = {
+                name = v.name,
+                icon = v.icon,
+                label = v.label,
+                items = v.item,
+                canInteract = v.canInteract,
+                onSelect = TransformOnSelect(v.onSelect),
+                distance = distance,
+                groups = v.jobs,
+            }
+        end
+
+        return exports.ox_target:addEntity(netId, tOptions)
+    end,
     AddBone = function(bones, options, distance)
         local tOptions = {}
         for k, v in pairs(options) do

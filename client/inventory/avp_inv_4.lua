@@ -7,7 +7,7 @@ Inventory = {
     RemoveCarriableItem = CarryItems.RemoveCarriableItem
 }
 
-AddEventHandler('avp_inv:onItemAdded', function(item) 
+RegisterNetEvent('avp_inv:onItemAdded', function(item) 
     if not item then return end
 
     if item.quantity > 0 then
@@ -17,7 +17,7 @@ AddEventHandler('avp_inv:onItemAdded', function(item)
     CarryItems.UpdateAnimation()
 end)
 
-AddEventHandler('avp_inv:onItemRemoved', function(item) 
+RegisterNetEvent('avp_inv:onItemRemoved', function(item) 
     if not item then return end
     CarryItems.ItemRemoved(item.name)
     CarryItems.UpdateAnimation()

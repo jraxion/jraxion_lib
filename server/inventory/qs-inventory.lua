@@ -5,6 +5,9 @@ Inventory = {
     RemoveItem = function(source, item, amount, metadata)
         return exports[Config.InventoryResource]:RemoveItem(source, item, amount, nil, metadata)
     end,
+    CanCarryItem = function(source, item, amount)
+        return exports[Config.InventoryResource]:CanCarryItem(source, item, amount)
+    end,
     GetItem = function(source, item)
         local amount = exports[Config.InventoryResource]:GetItemTotalAmount(source, item)
         return {

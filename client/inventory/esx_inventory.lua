@@ -7,7 +7,7 @@ Inventory = {
     RemoveCarriableItem = CarryItems.RemoveCarriableItem
 }
 
-AddEventHandler('esx:addInventoryItem', function(itemName, totalCount) 
+RegisterNetEvent('esx:addInventoryItem', function(itemName, totalCount) 
     if totalCount > 0 then
         CarryItems.ItemAdded(itemName)
     else
@@ -17,7 +17,7 @@ AddEventHandler('esx:addInventoryItem', function(itemName, totalCount)
     CarryItems.UpdateAnimation()
 end)
 
-AddEventHandler('esx:removeInventoryItem', function(itemName, totalCount) 
+RegisterNetEvent('esx:removeInventoryItem', function(itemName, totalCount) 
     if totalCount > 0 then
         CarryItems.ItemAdded(itemName)
     else

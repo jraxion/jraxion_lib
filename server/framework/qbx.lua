@@ -34,7 +34,7 @@ Framework = {
     GetJobPlayerCount = function(jobs)
         local count = 0
 
-        for _, job in pairs(jobs) do 
+        for _, job in pairs(jobs) do
             count += exports.qbx_core:GetDutyCountJob(job)
         end
         return count
@@ -57,6 +57,8 @@ Framework = {
 
             local Player = exports.qbx_core:GetPlayer(player)
             if not Player then return end
+
+            TriggerClientEvent("peuren_lib:notify", player, Core.Locale("paid_title"), Core.Locale("you_got_paid"):format(amount), "success")
             return Player.Functions.AddMoney(account, amount)
         end,
         Get = function(player, account)
@@ -89,6 +91,12 @@ Framework = {
         end,
     },
     Job = {
+        Set = function(player, job, grade)
+            local Player = QBCore.Functions.GetPlayer(player)
+            if not Player then return end
+            Player.Functions.SetJob(job, grade)
+            return true
+        end,
         Get = function(player)
             local Player = exports.qbx_core:GetPlayer(player)
             if not Player then return end

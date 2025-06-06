@@ -5,5 +5,7 @@
     "peuren_burglary_hacking": "Alarm Hacking",
     "peuren_burglary_lockpicking": "House Lockpicking",
     "peuren_burglary_looting": "House Looting",
-    "skill_menu_description": "%s XP | %s LVL"
+    "skill_menu_description": "%s XP | %s LVL",
+    "paid_title": "Paid",
+    "you_got_paid": "You got paid $%s"
 }

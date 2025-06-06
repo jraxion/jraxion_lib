@@ -11,6 +11,7 @@ Clothing = {
             {crm_id = 6,    crm_style = outfit.shoes_1,     crm_texture = outfit.shoes_2    }, -- Shoes
             {crm_id = 7,    crm_style = outfit.chain_1,     crm_texture = outfit.chain_2    }, -- Accessories
             {crm_id = 8,    crm_style = outfit.tshirt_1,    crm_texture = outfit.tshirt_2   }, -- Undershirts
+            {crm_id = 9,    crm_style = outfit.vest_1,      crm_texture = outfit.vest_2     }, -- Vests
             {crm_id = 10,   crm_style = outfit.decals_1,    crm_texture = outfit.decals_2   }, -- Decals
         }
         

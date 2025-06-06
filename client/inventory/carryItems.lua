@@ -147,7 +147,11 @@ Citizen.CreateThread(function()
     local playerInventory = Core.Framework.Callbacks.Trigger("peuren_lib:GetPlayerInventory")
     
     for k, v in pairs(playerInventory) do
-        CarryItems.ItemAdded(v.item)
+        if v.item then
+            CarryItems.ItemAdded(v.item)
+        else
+            print('[ERROR] - ITEM NOT FOUND:', json.encode(v, {indent = true}))
+        end
     end
 
     CarryItems.UpdateAnimation()

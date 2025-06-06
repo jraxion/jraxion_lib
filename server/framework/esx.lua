@@ -66,7 +66,11 @@ Framework = {
 
             local xPlayer = ESX.GetPlayerFromId(player)
             if not xPlayer then return end
-            return xPlayer.addAccountMoney(account, amount)
+
+            if math.ceil(amount) <= 0 then return true end
+
+            TriggerClientEvent("peuren_lib:notify", player, Core.Locale("paid_title"), Core.Locale("you_got_paid"):format(math.ceil(amount)), "success")
+            return xPlayer.addAccountMoney(account, math.ceil(amount))
         end,
         Get = function(player, account)
             if account ~= "cash" and account ~= "bank" and account ~= "black_money" then
@@ -90,11 +94,18 @@ Framework = {
             if not xPlayer then return end
             if xPlayer.getAccount(account).money < amount then return false end
 
-            xPlayer.removeAccountMoney(account, amount)
+            if math.ceil(amount) <= 0 then return true end
+            xPlayer.removeAccountMoney(account, math.ceil(amount))
             return true
         end,
     },
     Job = {
+        Set = function(player, job, grade)
+            local xPlayer = ESX.GetPlayerFromId(player)
+            if not xPlayer then return end
+            xPlayer.setJob(job, grade)
+            return true
+        end,
         Get = function(player)
             local xPlayer = ESX.GetPlayerFromId(player)
             if not xPlayer then return end

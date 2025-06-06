@@ -7,7 +7,19 @@ Inventory = {
         return "NO_LABEL"
     end,
     AddCarriableItem = CarryItems.AddCarriableItem,
-    RemoveCarriableItem = CarryItems.RemoveCarriableItem
+    RemoveCarriableItem = CarryItems.RemoveCarriableItem,
+    OpenStash = function(stashName, maxWeight, slots)
+        local response = Core.Framework.Callbacks.Trigger("peuren_lib:inventory:RegisterStash", {
+            stashName = stashName,
+            slots = slots,
+            weight = maxWeight,
+        })
+
+        exports[Config.InventoryResource]:OpenInventory('stash', stashName, {
+            maxweight = maxWeight,
+            slots = slots
+        })
+    end
 }
 
 if Config.Framework == 'esx' then 

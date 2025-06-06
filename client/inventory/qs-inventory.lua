@@ -39,7 +39,7 @@ if Config.Framework == 'esx' then
         CarryItems.UpdateAnimation()
     end)
 else 
-    AddEventHandler('qb-inventory:client:itemAdded', function(source, item, amount, totalAmount)
+    RegisterNetEvent('qb-inventory:client:itemAdded', function(source, item, amount, totalAmount)
         if totalAmount > 0 then
             CarryItems.ItemAdded(item)
         else
@@ -49,7 +49,7 @@ else
         CarryItems.UpdateAnimation()
     end)
     
-    AddEventHandler('qb-inventory:client:itemRemoved', function(source, item, amount, totalAmount)
+    RegisterNetEvent('qb-inventory:client:itemRemoved', function(source, item, amount, totalAmount)
         if totalAmount > 0 then
             CarryItems.ItemAdded(item)
         else
