@@ -1,6 +1,6 @@
-# CB_LIB Documentation
+# jraxion_lib Documentation
 
-CB_LIB is a compatibility layer that provides a unified API for interacting with various FiveM resources. This documentation covers the main components of the library.
+jraxion_lib is a compatibility layer that provides a unified API for interacting with various FiveM resources. This documentation covers the main components of the library.
 
 ## Table of Contents
 - [Framework](#framework)
@@ -47,7 +47,7 @@ Framework.SetVehicleProperties(vehicle, properties)
 ### Events
 
 - `peuren_lib:PlayerLoaded` - Triggered when the player is loaded
-- `cb_lib:PlayerLoaded` - Alternative event name for player loaded (for QBCore)
+- `jraxion_lib:PlayerLoaded` - Alternative event name for player loaded (for QBCore)
 
 ### Supported Frameworks
 

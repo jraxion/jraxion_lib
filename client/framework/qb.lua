@@ -28,7 +28,7 @@ Framework = {
 }
 
 AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
-    TriggerEvent('cb_lib:PlayerLoaded')
+    TriggerEvent('jraxion_lib:PlayerLoaded')
     Framework.PlayerLoaded = true
 end)
 

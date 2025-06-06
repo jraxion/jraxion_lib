@@ -31,6 +31,7 @@ Framework = {
             for id, _ in pairs(players) do
                 local player = QBCore.Functions.GetPlayer(id)
                 if not player then goto continue end
+                print('count', player)
 
                 if player.PlayerData.job.name == job then
                     if player.PlayerData.job.onduty then

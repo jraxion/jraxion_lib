@@ -4,13 +4,13 @@ Config.Debug = true -- Adds additional prints and enables all other resource deb
 Config.Language = 'en' -- Language file name, this means, that it will only load files from script locales folders that contain this name, 
                        -- if this is an invalid locale name on a resource it will default to english
 
-Config.Framework = "qb" 
+Config.Framework = "qbx" 
 Config.IsOldESX = false --This option is needed if you are running an older version of ESX
 Config.FrameworkResource = "qb-core" -- Framework resource name
 --SUPPORTED FRAMEWORK NAMES TO PUT IN: Config.Framework = ""
 --[[
     esx
-    qbx - (Uncomment qbx_core export in cb_lib/fxmanifest.lua file)
+    qbx - (Uncomment qbx_core export in jraxion_lib/fxmanifest.lua file)
     ox - (Uncomment ox_core imports in fxmanifest.lua file)
 ]]
 
@@ -22,8 +22,8 @@ Config.SQLConnector = "oxmysql"
     ghmattimysql
 ]]
 
-Config.Inventory = "qb-inventory"
-Config.InventoryResource = 'qb-inventory' -- The inventory system folder name that you're using
+Config.Inventory = "ox_inventory"
+Config.InventoryResource = 'ox_inventory' -- The inventory system folder name that you're using
 Config.CarryItemsEnabled = true -- Should the Carry Items system be enabled
 --SUPPORTED INVENTORY SCRIPT NAMES TO PUT IN: Config.Inventory = ""
 --[[
@@ -51,60 +51,60 @@ Config.ProgessBar = 'ox_lib' -- ox_lib / qb
 Config.ProgessBarResource = 'ox_lib' -- The menu system folder name that you're using
 --SUPPORTED PROGRESS BAR SCRIPT NAMES TO PUT IN: Config.ProgessBar = ""
 --[[
-    ox_lib - (Uncomment ox_lib import in cb_lib/fxmanifest.lua file)
+    ox_lib - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
     qb
     tgiann-lumihud
 ]]
 
-Config.Menu = 'qb'
-Config.MenuResource = 'qb' -- The menu system folder name that you're using
+Config.Menu = 'ox_lib'
+Config.MenuResource = 'ox_lib' -- The menu system folder name that you're using
 --SUPPORTED MENU SCRIPT NAMES TO PUT IN: Config.Menu = ""
 --[[
     ps-ui
-    ox_lib - (Uncomment ox_lib import in cb_lib/fxmanifest.lua file)
+    ox_lib - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
     qb
     nh-context
     esx_menu_default
     esx_context
 ]]
 
-Config.Input = 'qb-input'
-Config.InputResource = 'qb-input' -- The input system folder name that you're using
+Config.Input = 'ox_lib'
+Config.InputResource = 'ox_lib' -- The input system folder name that you're using
 --SUPPORTED INPUT SCRIPT NAMES TO PUT IN: Config.Input = ""
 --[[
-    ox_lib - (Uncomment ox_lib import in cb_lib/fxmanifest.lua file)
+    ox_lib - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
     qb-input
     nh-keyboard
 ]]
 
-Config.TextUI = "qb"
-Config.TextUIResource = "qb-input" -- The TextUI system folder name that you're using
+Config.TextUI = "ox_lib"
+Config.TextUIResource = "ox_lib" -- The TextUI system folder name that you're using
 --SUPPORTED TEXT UI SCRIPT NAMES TO PUT IN: Config.TextUI = ""
 --[[
     ps-ui
-    ox_lib - (Uncomment ox_lib import in cb_lib/fxmanifest.lua file)
+    ox_lib - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
     okokTextUI
     jg-textui
     qb
 ]]
 
-Config.Poly = "polyzone"
-Config.PolyResource = "polyzone" -- The Polyzone system folder name that you're using
+Config.Poly = "ox_lib"
+Config.PolyResource = "ox_lib" -- The Polyzone system folder name that you're using
 --SUPPORTED ZONE SCRIPT NAMES TO PUT IN: Config.Poly = ""
 --[[
     polyzone
-    ox_lib - (Uncomment ox_lib import in cb_lib/fxmanifest.lua file)
+    ox_lib - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
     okokTextUI
     qb
 ]]
 
-Config.Notifications = "qb"
-Config.NotificationsResource = "qb" -- The notification system folder name that you're using
+Config.Notifications = "ox_lib"
+Config.NotificationsResource = "ox_lib" -- The notification system folder name that you're using
 --SUPPORTED NOTIFICATION SCRIPT NAMES TO PUT IN: Config.Notifications = ""
 --[[
     peuren_notify
     ps-ui
-    ox_lib - (Uncomment ox_lib import in cb_lib/fxmanifest.lua file)
+    ox_lib - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
     qb
     esx
     okok

@@ -70,7 +70,7 @@ Inventory = {
     end
 }
 
-Core.Framework.RegisterCallback("cb_lib:GetPlayerInventory", function(player, cb)
+Core.Framework.RegisterCallback("jraxion_lib:GetPlayerInventory", function(player, cb)
     cb(Inventory.GetItems(player))
 end)
 

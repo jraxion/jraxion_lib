@@ -11,7 +11,7 @@ Inventory = {
             slots = slots,
             weight = maxWeight,
         })
-
+        print(response)
         exports.ox_inventory:openInventory('stash', {id = stashName})
     end
 }

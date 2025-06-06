@@ -37,7 +37,6 @@ Framework = {
         for _, job in pairs(jobs) do 
             count += exports.qbx_core:GetDutyCountJob(job)
         end
-        
         return count
     end,
     GetPlayers = function()

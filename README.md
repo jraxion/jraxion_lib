@@ -1,7 +1,7 @@
-# cb_lib
-cb_lib (peuren_lib) is a FiveM resource meant to provide cross compatibillity for resources.
+# jraxion_lib
+jraxion_lib (peuren_lib) is a FiveM resource meant to provide cross compatibillity for resources.
 
-# cb_lib Resource Support
+# jraxion_lib Resource Support
 
 ## Clothing Resources
 - `codem-appearance`
