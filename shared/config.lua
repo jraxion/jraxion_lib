@@ -204,7 +204,7 @@ Config.ClothingResource = 'qb-clothing' -- The clothing system resource folder n
 
 Config.SkillMenu = { -- Configuration for skill menu.
     Enabled = true, -- Should the Skill Menu be enabled
-    Command = "skills" -- The comand which opens the skill menu. Set this to false to disable it. Skill menu can be also opened by using exports["peuren_lib"]:OpenSkillMenu()
+    Command = "skills" -- The comand which opens the skill menu. Set this to false to disable it. Skill menu can be also opened by using exports["jraxion_lib"]:OpenSkillMenu()
 }
 
 Config.Groups = { -- Configuration for multiplier jobs (peuren only)

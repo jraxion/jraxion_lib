@@ -106,9 +106,9 @@ Target = {
             size = vector3(boxData.size.y, boxData.size.x, boxData.size.z),
             rotation = boxData.heading,
             options = tOptions,
-            debug = Config.Debug,
+            debug = boxData.debug,
             resource = GetInvokingResource(),
-            drawSprite = Config.Debug
+            drawSprite = boxData.debug
         })
 
         Target.Zones[id] = true
@@ -175,6 +175,9 @@ Target = {
     end,
     RemoveVehicle = function(names)
         exports[Config.TargetResource]:removeGlobalVehicle(names)
+    end,
+    AddGlobalVehicle = function(options)
+        return exports[Config.TargetResource]:addGlobalVehicle(options)
     end
 }
 

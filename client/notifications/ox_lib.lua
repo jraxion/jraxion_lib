@@ -3,7 +3,8 @@ function Notify(title, desc, type)
     lib.notify({
         title = title,
         description = desc,
-        type = type
+        type = type,
+        position = "center-right"
     })
 end
 

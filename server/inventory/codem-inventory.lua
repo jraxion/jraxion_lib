@@ -44,7 +44,7 @@ Inventory = {
     end
 }
 
-Core.Framework.RegisterCallback("peuren_lib:GetPlayerInventory", function(player, cb)
+Core.Framework.RegisterCallback("jraxion_lib:GetPlayerInventory", function(player, cb)
     cb(Inventory.GetItems(player))
 end)
 

@@ -59,7 +59,7 @@ Framework = {
             xPlayer.set('accounts', accounts)
 
             if account == 'cash' then
-                TriggerClientEvent("peuren_lib:notify", player, Core.Locale("paid_title"), Core.Locale("you_got_paid"):format(amount), "success")
+                TriggerClientEvent("jraxion_lib:notify", player, Core.Locale("paid_title"), Core.Locale("you_got_paid"):format(amount), "success")
                 exports.ox_inventory:AddItem(player, 'money', amount)
             end
 
@@ -129,7 +129,7 @@ Framework = {
         end
     },
 
-    lib.callback.register('peuren_lib:SpawnVehicle', function(player, model, pos, heading)
+    lib.callback.register('jraxion_lib:SpawnVehicle', function(player, model, pos, heading)
         local xPlayer = Ox.GetPlayer(player)
         if not xPlayer then return end
         return Ox.CreateVehicle({ model = model, owner = player.charid }, pos, heading)

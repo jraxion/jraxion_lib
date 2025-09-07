@@ -4,7 +4,7 @@ Poly = {
 
     AddBoxZone = function(pos, height, width, heading, cb)
         local invokingResource = GetInvokingResource() or GetCurrentResourceName()
-        local id = "peuren_lib:" .. math.random(100, 999)
+        local id = "jraxion_lib:" .. math.random(100, 999)
 
         if Poly.Data[id] then return Poly.AddBoxZone(pos, height, width, heading, cb) end
 
@@ -30,7 +30,7 @@ Poly = {
 
     AddCircularZone = function(pos, radius, cb)
         local invokingResource = GetInvokingResource() or GetCurrentResourceName()
-        local id = "peuren_lib:" .. math.random(100, 999)
+        local id = "jraxion_lib:" .. math.random(100, 999)
 
         if Poly.Data[id] then return Poly.AddCircularZone(pos, radius, cb) end
 
@@ -55,7 +55,7 @@ Poly = {
 
     AddPolyZone = function(points, cb)
         local invokingResource = GetInvokingResource() or GetCurrentResourceName()
-        local id = "peuren_lib:" .. math.random(100, 999)
+        local id = "jraxion_lib:" .. math.random(100, 999)
 
         if Poly.Data[id] then return Poly.AddPolyZone(points, cb) end
 

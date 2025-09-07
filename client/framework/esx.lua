@@ -37,10 +37,11 @@ Framework = {
     SetVehicleProperties = function (vehicle, data)
         return ESX.Game.SetVehicleProperties(vehicle, data)
     end,
+    Framework = "esx",
 }
 
 AddEventHandler('esx:onPlayerSpawn', function()
-    TriggerEvent('peuren_lib:PlayerLoaded')
+    TriggerEvent('jraxion_lib:PlayerLoaded')
     Framework.PlayerLoaded = true
 end)
 

@@ -25,6 +25,7 @@ Framework = {
     SetVehicleProperties = function (vehicle, data)
         return QBCore.Functions.SetVehicleProperties(vehicle, data)
     end,
+    Framework = "qb",
 }
 
 AddEventHandler('QBCore:Client:OnPlayerLoaded', function()

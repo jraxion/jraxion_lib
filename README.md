@@ -1,5 +1,5 @@
 # jraxion_lib
-jraxion_lib (peuren_lib) is a FiveM resource meant to provide cross compatibillity for resources.
+jraxion_lib (jraxion_lib) is a FiveM resource meant to provide cross compatibillity for resources.
 
 # jraxion_lib Resource Support
 

@@ -193,6 +193,9 @@ Target = {
     end,
     RemoveVehicle = function(names)
         exports[Config.TargetResource]:RemoveGlobalVehicle(names)
+    end,
+    AddGlobalVehicle = function(options)
+        return exports[Config.TargetResource]:AddGlobalVehicle(options)
     end
 }
 

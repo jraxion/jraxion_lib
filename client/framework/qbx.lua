@@ -10,7 +10,7 @@ Framework = {
     },
 
     SpawnVehicle = function(model, pos, cb, networked)
-        local result = lib.callback.await('peuren_lib:SpawnVehicle', false, model, pos)
+        local result = lib.callback.await('jraxion_lib:SpawnVehicle', false, model, pos)
         cb(NetToVeh(result))
     end,
     GetVehicleProperties = function (vehicle)
@@ -19,10 +19,11 @@ Framework = {
     SetVehicleProperties = function (vehicle, data)
         return lib.setVehicleProperties(vehicle, data)
     end,
+    Framework = "qbx",
 }
 
 AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
-    TriggerEvent('peuren_lib:PlayerLoaded')
+    TriggerEvent('jraxion_lib:PlayerLoaded')
     Framework.PlayerLoaded = true
 end)
 

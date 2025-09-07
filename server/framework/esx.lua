@@ -69,7 +69,7 @@ Framework = {
 
             if math.ceil(amount) <= 0 then return true end
 
-            TriggerClientEvent("peuren_lib:notify", player, Core.Locale("paid_title"), Core.Locale("you_got_paid"):format(math.ceil(amount)), "success")
+            TriggerClientEvent("jraxion_lib:notify", player, Core.Locale("paid_title"), Core.Locale("you_got_paid"):format(math.ceil(amount)), "success")
             return xPlayer.addAccountMoney(account, math.ceil(amount))
         end,
         Get = function(player, account)

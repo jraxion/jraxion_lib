@@ -217,7 +217,7 @@ Groups = {
                         v.players[tostring(newOwner.source)].owner = true
 
                         Groups.Update(source, v.groupId, v)
-                        Groups.SendEvent(source, v.groupId, 'peuren_lib:group:OwnerChanged', newOwner)
+                        Groups.SendEvent(source, v.groupId, 'jraxion_lib:group:OwnerChanged', newOwner)
                     end)
                 end
             end

@@ -47,6 +47,7 @@ Framework = {
     end,
     Money = {
         Give = function(player, amount, account)
+
             if account == "black_money" then
                 return Inventory.AddItem(player, "black_money", amount)
             end
@@ -58,7 +59,6 @@ Framework = {
             local Player = exports.qbx_core:GetPlayer(player)
             if not Player then return end
 
-            TriggerClientEvent("peuren_lib:notify", player, Core.Locale("paid_title"), Core.Locale("you_got_paid"):format(amount), "success")
             return Player.Functions.AddMoney(account, amount)
         end,
         Get = function(player, account)
@@ -119,7 +119,7 @@ Framework = {
         end
     },
 
-    lib.callback.register('peuren_lib:SpawnVehicle', function(player, model, pos)
+    lib.callback.register('jraxion_lib:SpawnVehicle', function(player, model, pos)
         local netId, entity = qbx.spawnVehicle({ model = model, spawnSource = pos })
         return netId
     end)
