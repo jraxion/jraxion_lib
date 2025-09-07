@@ -69,6 +69,7 @@ Core.Version = VersionCheck
 Core.LoadLocales = loadLocales
 Core.GetLocales = getLocales
 Core.Print = Utils.Print
+Core.Utils = Utils
 
 Core.Framework.RegisterCallback("jraxion_lib:GetSkillData", function(source, cb)
     local skillData = {}

@@ -38,6 +38,7 @@ Core.LoadLocales = loadLocales
 Core.GetLocales = getLocales
 Core.Locale = locale
 Core.Print = Utils.Print
+Core.Utils = Utils
 
 Core.LoadLocales()
 
