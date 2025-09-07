@@ -7,5 +7,7 @@
     "peuren_burglary_looting": "House Looting",
     "skill_menu_description": "%s XP | %s LVL",
     "paid_title": "Paid",
-    "you_got_paid": "You got paid $%s"
+    "you_got_paid": "You got paid $%s",
+    "group_job_title":"Groups",
+    "you_are_already_working": "You have an active state in another job site! Finish it before starting a new job!"
 }

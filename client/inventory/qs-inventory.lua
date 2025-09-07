@@ -40,6 +40,8 @@ if Config.Framework == 'esx' then
     end)
 else 
     RegisterNetEvent('qb-inventory:client:itemAdded', function(source, item, amount, totalAmount)
+        if not item or not totalAmount then return end
+
         if totalAmount > 0 then
             CarryItems.ItemAdded(item)
         else
@@ -50,6 +52,8 @@ else
     end)
     
     RegisterNetEvent('qb-inventory:client:itemRemoved', function(source, item, amount, totalAmount)
+        if not item or not totalAmount then return end
+        
         if totalAmount > 0 then
             CarryItems.ItemAdded(item)
         else

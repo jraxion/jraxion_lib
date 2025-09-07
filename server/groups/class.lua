@@ -1,10 +1,10 @@
 Groups = {
     Data = {},
     
-    Get = function(source, groupId)
+    Get = function(source, groupId, resource)
         if not source then return end
 
-        local resource = GetInvokingResource()
+        resource = resource or GetInvokingResource()
         if not resource then return end
 
         local id = Framework.GetIdentifier(source)
@@ -161,6 +161,8 @@ Groups = {
         if not resource then return end
 
         TriggerClientEvent(resource..':group:MemberAdded', source, Groups.Data[resource][data.owner], data.owner == id)
+        Groups.SendEvent(source, groupId, resource..':group:Updated', data)
+
         return data
     end,
 
@@ -179,8 +181,19 @@ Groups = {
         Groups.Data[resource][data.owner].pCount -= 1
         Groups.Data[resource][data.owner].players[tostring(source)] = nil
         TriggerClientEvent(resource..':group:MemberRemoved', source, {}, data.owner == id)
+        Groups.SendEvent(source, groupId, resource..':group:Updated', data)
 
         return data
+    end,
+
+    GetLastPlayer = function(players)
+        local lastPlayer = nil
+        
+        for key, player in pairs(players) do
+            lastPlayer = player
+        end
+        
+        return lastPlayer
     end,
     
     MemberDisconnected = function(source)
@@ -189,8 +202,8 @@ Groups = {
         local id = Framework.GetIdentifier(source)
         if not id then return end
 
-        for resource, _ in pairs(Groups.Data) do 
-            for _, v in pairs(Groups.Data[resource]) do 
+        for resource, _ in pairs(Groups.Data) do
+            for _, v in pairs(Groups.Data[resource]) do
                 if v.players[tostring(source)] and v.players[tostring(source)].owner then
                     local timeout = os.time() + (Config.Groups.Timeout.min * 60) + Config.Groups.Timeout.sec
 
@@ -206,28 +219,29 @@ Groups = {
                         local isOnline = Framework.GetIdentifierID(id)
                         if isOnline then return end
 
-                        local newOwner = v.pCount > 0 and v.players[tostring(math.random(1, v.pCount))] or nil
-            
+                        local newOwner = v.pCount > 0 and Groups.GetLastPlayer(v.players) or nil         
                         if not newOwner then
                             Groups.Data[resource][id] = nil
                             return
                         end
-            
+
                         v.owner = newOwner.id
                         v.players[tostring(newOwner.source)].owner = true
+                        
+                        Groups.Data[v.resource][id] = nil
+                        Groups.Data[v.resource][v.owner] = v
 
-                        Groups.Update(source, v.groupId, v)
-                        Groups.SendEvent(source, v.groupId, 'jraxion_lib:group:OwnerChanged', newOwner)
+                        Groups.SendEvent(newOwner.source, v.groupId, v.resource..':group:Updated', v, v.resource)
                     end)
                 end
             end
         end
     end,
 
-    SendEvent = function(source, groupId, event, args)
+    SendEvent = function(source, groupId, event, args, resource)
         if not source or not groupId then return end
 
-        local data = Groups.Get(source, groupId)
+        local data = Groups.Get(source, groupId, resource)
         if not data then return end
 
         for _, v in pairs(data.players) do
@@ -247,6 +261,7 @@ Groups = {
         for _, group in pairs(Groups.Data) do
             for _, data in pairs(group) do
                 if data.players[tostring(source)] and data.resource ~= resource then
+                    TriggerClientEvent("peuren_lib:notify", source, locale("group_job_title"), locale("you_are_already_working"), "error")
                     return true
                 end
             end
@@ -287,8 +302,8 @@ Groups = {
             id = id .. string.sub(characters, index, index)
         end
 
-        if Groups.Data[id] then 
-            return Groups.CreateGroupId() 
+        if Groups.Data[id] then
+            return Groups.CreateGroupId()
         end
     
         return id

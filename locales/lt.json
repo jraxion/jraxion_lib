@@ -5,5 +5,9 @@
     "peuren_burglary_hacking": "Signalizacijų nulaužimas",
     "peuren_burglary_lockpicking": "Namų spynų nulaužimas",
     "peuren_burglary_looting": "Namų apieška",
-    "skill_menu_description": "%s XP | %s LVL"
+    "skill_menu_description": "%s XP | %s LVL",
+    "paid_title": "Apmokėta",
+    "you_got_paid": "Gavote $%s",
+    "group_job_title": "Grupės",
+    "you_are_already_working": "Jūs jau turite aktyvų statusą kitoje darbo vietoje! Užbaikite jį prieš pradėdami naują darbą!"
 }

@@ -1,0 +1,13 @@
+{
+    "input_confirm": "Potwierdź",
+    "skill_menu_title": "Umiejętności",
+    "peuren_fishing": "Wędkarstwo",
+    "peuren_burglary_hacking": "Hakowanie Alarmów",
+    "peuren_burglary_lockpicking": "Włamywanie do Domów",
+    "peuren_burglary_looting": "Plądrowanie Domów",
+    "skill_menu_description": "%s XP | %s LVL",
+    "paid_title": "Zapłacono",
+    "you_got_paid": "Otrzymałeś $%s",
+    "group_job_title": "Grupy",
+    "you_are_already_working": "Masz już aktywny status w innym miejscu pracy! Zakończ go przed rozpoczęciem nowej pracy!"
+}

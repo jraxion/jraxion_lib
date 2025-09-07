@@ -1,0 +1,13 @@
+{
+    "input_confirm": "Bestätigen",
+    "skill_menu_title": "Fähigkeiten",
+    "peuren_fishing": "Angeln",
+    "peuren_burglary_hacking": "Alarmanlage Hacken",
+    "peuren_burglary_lockpicking": "Schlösser Knacken",
+    "peuren_burglary_looting": "Haus Plündern",
+    "skill_menu_description": "%s XP | %s LVL",
+    "paid_title": "Bezahlt",
+    "you_got_paid": "Du hast $%s erhalten",
+    "group_job_title": "Gruppen",
+    "you_are_already_working": "Du hast bereits einen aktiven Status an einem anderen Arbeitsplatz! Beende ihn, bevor du einen neuen Job startest!"
+}

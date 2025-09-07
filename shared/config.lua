@@ -1,6 +1,6 @@
 Config = {}
 
-Config.Debug = false -- Adds additional prints and enables all other resource debug options | true or false
+Config.Debug = true -- Adds additional prints and enables all other resource debug options | true or false
 Config.Language = 'en' -- Language file name, this means, that it will only load files from script locales folders that contain this name, 
                        -- if this is an invalid locale name on a resource it will default to english
 
@@ -12,6 +12,7 @@ Config.FrameworkResource = "qb-core" -- Framework resource name
     esx
     qbx - (Uncomment qbx_core export in jraxion_lib/fxmanifest.lua file)
     ox - (Uncomment ox_core imports in fxmanifest.lua file)
+    tmc - (default resource name: core)
 ]]
 
 Config.SQLConnector = "oxmysql"
@@ -27,6 +28,7 @@ Config.InventoryResource = 'ox_inventory' -- The inventory system folder name th
 Config.CarryItemsEnabled = true -- Should the Carry Items system be enabled
 --SUPPORTED INVENTORY SCRIPT NAMES TO PUT IN: Config.Inventory = ""
 --[[
+    tmc
     avp_inv_4
     mf-inventory
     esx_inventory
@@ -61,6 +63,7 @@ Config.Menu = 'ox_lib'
 Config.MenuResource = 'ox_lib' -- The menu system folder name that you're using
 --SUPPORTED MENU SCRIPT NAMES TO PUT IN: Config.Menu = ""
 --[[
+    tmc
     ps-ui
     ox_lib - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
     qb
@@ -103,6 +106,7 @@ Config.Notifications = "ox_lib"
 Config.NotificationsResource = "ox_lib" -- The notification system folder name that you're using
 --SUPPORTED NOTIFICATION SCRIPT NAMES TO PUT IN: Config.Notifications = ""
 --[[
+    tmc
     peuren_notify
     ps-ui
     ox_lib - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
@@ -119,6 +123,7 @@ Config.NotificationsResource = "ox_lib" -- The notification system folder name t
 Config.WeatherSync = 'qb-weathersync'
 --SUPPORTED WEATHER SYNC SCRIPT NAMES TO PUT IN: Config.WeatherSync = ""
 --[[
+    tmc
     renewed-weathersync
     qb-weathersync
     cd_easytime
@@ -128,6 +133,8 @@ Config.Dispatch = 'cd_dispatch'
 Config.DispatchResource = 'cd_dispatch' -- The dispatch system resource folder name
 --SUPPORTED DISPATCH SCRIPT NAMES TO PUT IN: Config.Dispatch = ""
 --[[
+    tmc
+    codem-dispatch
     fea-dispatch
     origen_police
     rcore_dispatch
@@ -145,6 +152,7 @@ Config.Fuel = 'LegacyFuel'
 Config.FuelResource = 'LegacyFuel' -- The fuel system resource folder name
 --SUPPORTED FUEL SCRIPT NAMES TO PUT IN: Config.Fuel = ""
 --[[
+    tmc
     okokGasStation
     LegacyFuel
     ox_fuel
@@ -167,6 +175,8 @@ Config.VehicleKeys = 'qb-vehiclekeys'
 Config.VehicleKeysResource = 'qb-vehiclekeys' -- The vehicle key system resource folder name
 --SUPPORTED VEHICLE KEY SCRIPT NAMES TO PUT IN: Config.VehicleKeys = ""
 --[[
+    jaksam
+    tmc
     MrNewbVehicleKeys
     mk_vehiclekeys
     okokGarage
@@ -191,6 +201,7 @@ Config.Clothing = 'qb-clothing'
 Config.ClothingResource = 'qb-clothing' -- The clothing system resource folder name
 --SUPPORTED CLOTHING SCRIPT NAMES TO PUT IN: Config.Clothing = ""
 --[[
+    tmc
     crm-appearance
     codem-appearance
     tgiann-clothing
@@ -202,6 +213,25 @@ Config.ClothingResource = 'qb-clothing' -- The clothing system resource folder n
     rcore_clothing
 ]]
 
+Config.VehicleProperties = 'ox_lib'--Recommended to use ox_lib for vehicle properties, but you can use other resources as well.
+Config.VehiclePropertiesResource = 'ox_lib' -- The vehicle properties system resource folder name
+--SUPPORTED VEHICLE PROPERTIES SCRIPT NAMES TO PUT IN: Config.VehicleProperties = ""
+--[[
+    ox_lib - (Uncomment ox_lib import in peuren_lib/fxmanifest.lua file)
+    qb
+    qbx
+    esx
+
+]]
+
+Config.Logger = 'discord' -- Logger system resource name
+--SUPPORTED LOGGER SCRIPT NAMES TO PUT IN: Config.Logger = ""
+--[[
+    discord
+    ox_lib - (Uncomment ox_lib import in peuren_lib/fxmanifest.lua file)
+]]
+
+
 Config.SkillMenu = { -- Configuration for skill menu.
     Enabled = true, -- Should the Skill Menu be enabled
     Command = "skills" -- The comand which opens the skill menu. Set this to false to disable it. Skill menu can be also opened by using exports["jraxion_lib"]:OpenSkillMenu()
@@ -209,9 +239,12 @@ Config.SkillMenu = { -- Configuration for skill menu.
 
 Config.Groups = { -- Configuration for multiplier jobs (peuren only)
     MemberLimit = 4,--Maximum group member amount in a group
-    Timeout = { min = 0, sec = 10 }, --The time in which the group owner has to return to game before assigning a new group leader
+    Timeout = { min = 0, sec = 30 }, --The time in which the group owner has to return to game before assigning a new group leader
     password = {
         type = 'number',--number or char
         length = 6--code length
     }
 }
+
+--Enable this if you know how to use it, otherwise leave it disabled (Extra security feature)
+Config.EnableVehicleWhiteList = true -- Enable vehicle whitelist for jobs, this will only allow vehicles that are in the job vehicle list to be spawned

@@ -4,6 +4,10 @@ function locale(str, ...)
     local resource = GetInvokingResource() or GetCurrentResourceName()
     local lstr = dict[resource][str]
 
+    if not lstr and dict["peuren_lib"][str] then
+        lstr = dict["peuren_lib"][str]
+    end
+
     if lstr then
         if ... then
             return lstr and lstr:format(...)
