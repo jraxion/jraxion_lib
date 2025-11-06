@@ -19,6 +19,12 @@ Framework = {
     SetVehicleProperties = function (vehicle, data)
         return lib.setVehicleProperties(vehicle, data)
     end,
+    GetPlayerJob = function()
+        if player and player.job then
+            return player.job
+        end
+        return nil
+    end,
     Framework = "ox",
 }
 

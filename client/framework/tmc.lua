@@ -59,6 +59,13 @@ Framework = {
             Debug('Vehicle spawned with ID: ' .. tostring(vehicle))
             if cb then cb(vehicle) end
         end, pos, networked)
+    end,
+    GetPlayerJob = function()
+        local playerData = TMC.Functions.GetPlayerData()
+        if playerData and playerData.job then
+            return playerData.job
+        end
+        return nil
     end
 }
 

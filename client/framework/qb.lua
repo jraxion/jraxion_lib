@@ -25,6 +25,13 @@ Framework = {
     SetVehicleProperties = function (vehicle, data)
         return QBCore.Functions.SetVehicleProperties(vehicle, data)
     end,
+    GetPlayerJob = function()
+        local playerData = QBCore.Functions.GetPlayerData()
+        if playerData and playerData.job then
+            return playerData.job
+        end
+        return nil
+    end,
     Framework = "qb",
 }
 

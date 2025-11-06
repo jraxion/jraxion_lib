@@ -19,6 +19,13 @@ Framework = {
     SetVehicleProperties = function (vehicle, data)
         return lib.setVehicleProperties(vehicle, data)
     end,
+    GetPlayerJob = function()
+        local playerData = exports.qbx_core:GetPlayerData()
+        if playerData and playerData.job then
+            return playerData.job
+        end
+        return nil
+    end,
     Framework = "qbx",
 }
 

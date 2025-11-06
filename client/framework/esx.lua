@@ -37,6 +37,13 @@ Framework = {
     SetVehicleProperties = function (vehicle, data)
         return ESX.Game.SetVehicleProperties(vehicle, data)
     end,
+    GetPlayerJob = function()
+        local playerData = ESX.GetPlayerData()
+        if playerData and playerData.job then
+            return playerData.job
+        end
+        return nil
+    end,
     Framework = "esx",
 }
 
