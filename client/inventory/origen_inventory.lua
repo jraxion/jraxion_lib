@@ -1,7 +1,12 @@
 Inventory = {
     GetItemLabel = function(item)
-        if not ItemLabels[item] then return "NO_LABEL" end
-        return ItemLabels[item]
+        if Config.Framework == 'esx' then 
+            if not ItemLabels[item] then return "NO_LABEL" end
+            return ItemLabels[item]
+        elseif Config.Framework == 'qb' or Config.Framework == 'qbx' then
+            if not QBCore.Shared.Items[item] then return "NO_LABEL" end
+            return QBCore.Shared.Items[item].label
+        end
     end,
     AddCarriableItem = CarryItems.AddCarriableItem,
     RemoveCarriableItem = CarryItems.RemoveCarriableItem,
@@ -12,11 +17,7 @@ Inventory = {
             weight = maxWeight,
         })
 
-        TriggerServerEvent("inventory:server:OpenInventory", "stash", stashName, {
-            maxweight = maxWeight,
-            slots = slots,
-            label = stashName
-        })
+        exports.origen_inventory:openInventory('stash', stashName)
     end
 }
 

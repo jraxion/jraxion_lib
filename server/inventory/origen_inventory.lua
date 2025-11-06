@@ -1,24 +1,24 @@
 Inventory = {
     AddItem = function(source, item, amount, metadata) 
-        return exports[Config.InventoryResource]:AddItem(source, item, amount, nil, nil, metadata)
+        return exports.origen_inventory:addItem(source, item, amount, metadata)
     end,
     RemoveItem = function(source, item, amount, metadata)
-        return exports[Config.InventoryResource]:RemoveItem(source, item, amount, nil, metadata)
+        return exports.origen_inventory:removeItem(source, item, amount, metadata)
     end,
     CanCarryItem = function(source, item, amount)
-        return exports[Config.InventoryResource]:canCarryItem(source, item, amount)
+        return exports.origen_inventory:canCarryItem(source, item, amount)
     end,
     GetItem = function(source, item, metadata)
-        local itemData = exports[Config.InventoryResource]:GetItem(source, item, metadata, true)
+        local itemData = exports.origen_inventory:getItem(source, item, metadata)
         if not itemData then return nil end
         return {
             item = itemData.name,
-            count = itemData.count,
+            count = itemData.amount,
             metadata = itemData.metadata,
         }
     end,
     GetItems = function(source)
-        local data = exports[Config.InventoryResource]:GetInventory(source)
+        local data = exports.origen_inventory:getItems(source)
         if not data then return {} end
 
         local formattedItems = {}
@@ -34,10 +34,19 @@ Inventory = {
         return formattedItems
     end,
     HasPlayerItem = function(source, item, count)
-        return exports[Config.InventoryResource]:HasItem(source, item, amount)
+        local item = Inventory.GetItem(source, item)
+        if not item then return false end
+        if not count and item then return true end
+        return count <= item.count
     end,
     RegisterUsableItem = function(item, callback)
-        exports[Config.InventoryResource]:CreateUsableItem(item, callback)
+        if Config.Framework == "qb" then
+            QBCore.Functions.CreateUseableItem(item, callback)
+        elseif Config.Framework == "esx" then
+            ESX.RegisterUsableItem(item, callback)
+        elseif Config.Framework == "qbx" then
+            exports.qbx_core:CreateUseableItem(item, callback)
+        end
     end
 }
 

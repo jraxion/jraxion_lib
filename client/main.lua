@@ -2,6 +2,10 @@ local dir = "client/%s/%s.lua"
 local resource = GetCurrentResourceName()
 
 function LoadModule(module, selection)
+    if not selection then
+        print(("No selection provided for module: %s. Please set the correct resource or install one of the supported resources"):format(module))
+        return nil
+    end
     local chunk = LoadResourceFile(resource, dir:format(module, string.lower(selection)))
     if not chunk then
         return error(("Couldn't load module file: %s - %s"):format(module, string.lower(selection)), 3)

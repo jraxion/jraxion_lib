@@ -2,6 +2,10 @@ local dir = "server/%s/%s.lua"
 local resource = GetCurrentResourceName()
 
 function LoadModule(module, selection)
+    if not selection then
+        print(("No selection provided for module: %s. Please set the correct resource or install one of the supported resources"):format(module))
+        return nil
+    end
     local chunk = LoadResourceFile(resource, dir:format(module, string.lower(selection)))
     if not chunk then
         return error(("Couldn't load module file: %s - %s"):format(module, string.lower(selection)), 3)
@@ -62,6 +66,7 @@ Core.Framework = LoadModule("framework", Config.Framework)
 Core.Database = LoadModule("database", Config.SQLConnector)
 Core.Inventory = LoadModule("inventory", Config.Inventory)
 Core.Dispatch = LoadModule("dispatch", Config.Dispatch)
+Core.Weather = LoadModule("weathersync", Config.WeatherSync)
 Core.Logs = LoadModule("logger", Config.Logger)
 Core.EntitySync = EntitySync
 Core.Groups = Groups

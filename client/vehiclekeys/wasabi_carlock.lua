@@ -4,4 +4,8 @@ CarKeys = {
     end
 }
 
+RegisterNetEvent('peuren_lib:RemoveVehKeys', function(veh, plate)
+    exports[Config.VehicleKeysResource]:RemoveKey(plate)
+end)
+
 return CarKeys
