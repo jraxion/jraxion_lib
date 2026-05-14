@@ -41,3 +41,7 @@ server_scripts {
 }
 
 files { 'locales/*.json', 'client/**/*.lua' }
+
+escrow_ignore {
+  '**'
+}

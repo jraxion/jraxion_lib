@@ -1,5 +1,5 @@
 local dir = "client/%s/%s.lua"
-local resource = "peuren_lib"
+local resource = GetCurrentResourceName()
 
 function LoadModule(module, selection)
     if not selection then
@@ -11,7 +11,7 @@ function LoadModule(module, selection)
         return error(("Couldn't load module file: %s - %s"):format(module, string.lower(selection)), 3)
     end
 
-    local fn, err = load(chunk, ("@@peuren_lib/client/%s/%s.lua"):format(module, string.lower(selection)))
+    local fn, err = load(chunk, ("@@%s/client/%s/%s.lua"):format(resource, module, string.lower(selection)))
 
     if not fn and err then
         return error(("Error loading module: %s - %s"):format(module, string.lower(selection)), 3)
@@ -21,6 +21,10 @@ function LoadModule(module, selection)
 end
 
 Core = {}
+exports("Core", function()
+    return Core
+end)
+
 Core.Framework = LoadModule("framework", Config.Framework)
 Core.Inventory = LoadModule("inventory", Config.Inventory)
 Core.VehicleKeys = LoadModule("vehiclekeys", Config.VehicleKeys)
@@ -41,11 +45,12 @@ Core.LoadLocales = loadLocales
 Core.GetLocales = getLocales
 Core.Locale = locale
 Core.Print = Utils.Print
+Core.Utils = Utils
 
 Core.LoadLocales()
 
-RegisterNetEvent("peuren_lib:notify", function(title, desc, type)
-    Core.Notify(title, desc, type)
-end)
-
-exports("Core", function() return Core end)
+if Core.Notify then
+    RegisterNetEvent("jraxion_lib:notify", function(title, desc, type)
+        Core.Notify(title, desc, type)
+    end)
+end

@@ -1,16 +1,42 @@
+--[[
+    ox_lib server callbacks run in a coroutine context where nesting `Citizen.Await(promise)`
+    after `lib.callback.await` on the client can break the script host. We bridge the legacy
+    `function(source, cb, ...)` style by capturing `cb(...)` synchronously and returning the
+    value from the lib handler (ox_lib's supported pattern).
+]]
+local function registerLibCallback(name, userCb)
+    lib.callback.register(name, function(source, ...)
+        local ret
+        local done = false
+        local function finish(...)
+            if done then return end
+            done = true
+            local n = select('#', ...)
+            if n == 0 then
+                ret = nil
+            elseif n == 1 then
+                ret = select(1, ...)
+            else
+                ret = table.pack(...)
+            end
+        end
+
+        local ok, err = pcall(userCb, source, finish, ...)
+        if not ok then
+            print(('^1[jraxion_lib]^0 RegisterCallback %q failed: %s'):format(tostring(name), tostring(err)))
+            return nil
+        end
+        if not done then
+            print(('^1[jraxion_lib]^0 RegisterCallback %q never called cb()'):format(tostring(name)))
+            return nil
+        end
+        return ret
+    end)
+end
+
 Framework = {
     RegisterCallback = function(name, cb, ...)
-        lib.callback.register(name, function(source, ...)
-            local p = promise:new()
-
-            function callbackWrapper(...)
-                p:resolve(...)
-            end
-
-            cb(source, callbackWrapper, ...)
-            
-            return Citizen.Await(p)
-        end)
+        registerLibCallback(name, cb)
     end,
     GetIdentifier = function(player)
         local Player = exports.qbx_core:GetPlayer(player)
@@ -34,14 +60,9 @@ Framework = {
     GetJobPlayerCount = function(jobs)
         local count = 0
 
-        if jobs ~= nil and type(jobs) ~= "table" then
-            jobs = { jobs }
-        end
-
         for _, job in pairs(jobs) do
             count += exports.qbx_core:GetDutyCountJob(job)
         end
-        
         return count
     end,
     GetPlayers = function()
@@ -52,6 +73,7 @@ Framework = {
     end,
     Money = {
         Give = function(player, amount, account)
+
             if account == "black_money" then
                 return Inventory.AddItem(player, "black_money", amount)
             end
@@ -63,7 +85,6 @@ Framework = {
             local Player = exports.qbx_core:GetPlayer(player)
             if not Player then return end
 
-            TriggerClientEvent("peuren_lib:notify", player, locale("paid_title"), locale("you_got_paid"):format(amount), "success")
             return Player.Functions.AddMoney(account, amount)
         end,
         Get = function(player, account)
@@ -85,8 +106,6 @@ Framework = {
             if account == "black_money" then
                 return Inventory.RemoveItem(player, "black_money", amount)
             end
-
-            if account == "money" then account = "cash" end
 
             if account ~= "cash" and account ~= "bank" then
                 return error("Wrong money account: cash or bank required.", 3)
@@ -125,11 +144,11 @@ Framework = {
             return Player.PlayerData.job.grade.name
         end
     },
-
-    lib.callback.register('peuren_lib:SpawnVehicle', function(player, model, pos)
-        local netId, entity = qbx.spawnVehicle({ model = model, spawnSource = pos })
-        return netId
-    end)
 }
+
+lib.callback.register('jraxion_lib:SpawnVehicle', function(player, model, pos)
+    local netId = qbx.spawnVehicle({ model = model, spawnSource = pos })
+    return netId
+end)
 
 return Framework

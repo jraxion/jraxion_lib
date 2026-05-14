@@ -1,16 +1,36 @@
+local function registerLibCallback(name, userCb)
+    lib.callback.register(name, function(source, ...)
+        local ret
+        local done = false
+        local function finish(...)
+            if done then return end
+            done = true
+            local n = select('#', ...)
+            if n == 0 then
+                ret = nil
+            elseif n == 1 then
+                ret = select(1, ...)
+            else
+                ret = table.pack(...)
+            end
+        end
+
+        local ok, err = pcall(userCb, source, finish, ...)
+        if not ok then
+            print(('^1[jraxion_lib]^0 RegisterCallback %q failed: %s'):format(tostring(name), tostring(err)))
+            return nil
+        end
+        if not done then
+            print(('^1[jraxion_lib]^0 RegisterCallback %q never called cb()'):format(tostring(name)))
+            return nil
+        end
+        return ret
+    end)
+end
+
 Framework = {
     RegisterCallback = function(name, cb, ...)
-        lib.callback.register(name, function(source, ...)
-            local p = promise:new()
-
-            function callbackWrapper(...)
-                p:resolve(...)
-            end
-
-            cb(source, callbackWrapper, ...)
-            
-            return Citizen.Await(p)
-        end)
+        registerLibCallback(name, cb)
     end,
     GetIdentifier = function(player)
         local xPlayer = Ox.GetPlayer(player)
@@ -59,7 +79,7 @@ Framework = {
             xPlayer.set('accounts', accounts)
 
             if account == 'cash' then
-                TriggerClientEvent("peuren_lib:notify", player, locale("paid_title"), locale("you_got_paid"):format(amount), "success")
+                TriggerClientEvent("jraxion_lib:notify", player, Core.Locale("paid_title"), Core.Locale("you_got_paid"):format(amount), "success")
                 exports.ox_inventory:AddItem(player, 'money', amount)
             end
 
@@ -128,12 +148,12 @@ Framework = {
             return ""
         end
     },
-
-    lib.callback.register('peuren_lib:SpawnVehicle', function(player, model, pos, heading)
-        local xPlayer = Ox.GetPlayer(player)
-        if not xPlayer then return end
-        return Ox.CreateVehicle({ model = model, owner = player.charid }, pos, heading)
-    end)
 }
+
+lib.callback.register('jraxion_lib:SpawnVehicle', function(player, model, pos, heading)
+    local xPlayer = Ox.GetPlayer(player)
+    if not xPlayer then return end
+    return Ox.CreateVehicle({ model = model, owner = player.charid }, pos, heading)
+end)
 
 return Framework

@@ -1,5 +1,5 @@
 local dir = "server/%s/%s.lua"
-local resource = "peuren_lib"
+local resource = GetCurrentResourceName()
 
 function LoadModule(module, selection)
     if not selection then
@@ -11,7 +11,7 @@ function LoadModule(module, selection)
         return error(("Couldn't load module file: %s - %s"):format(module, string.lower(selection)), 3)
     end
 
-    local fn, err = load(chunk, ("@@peuren_lib/server/%s/%s.lua"):format(module, string.lower(selection)))
+    local fn, err = load(chunk, ("@@%s/server/%s/%s.lua"):format(resource, module, string.lower(selection)))
 
     if not fn and err then
         return error(("Error loading module: %s - %s"):format(module, string.lower(selection)), 3)
@@ -60,6 +60,10 @@ end
 VersionCheck('Peuren/peuren_lib')
 
 Core = {}
+exports("Core", function()
+    return Core
+end)
+
 Core.Locale = locale
 loadLocales()
 Core.Framework = LoadModule("framework", Config.Framework)
@@ -74,86 +78,87 @@ Core.Version = VersionCheck
 Core.LoadLocales = loadLocales
 Core.GetLocales = getLocales
 Core.Print = Utils.Print
+Core.Utils = Utils
 
-Core.Framework.RegisterCallback("peuren_lib:GetSkillData", function(source, cb)
-    local skillData = {}
+if Core.Framework and Core.Framework.RegisterCallback then
+    Core.Framework.RegisterCallback("jraxion_lib:GetSkillData", function(source, cb)
+        local skillData = {}
 
-    if GetResourceState("peuren_fishing") == "started" then
-        local pData = exports["peuren_fishing"]:GetPlayerData(source)
+        if GetResourceState("peuren_fishing") == "started" then
+            local pData = exports["peuren_fishing"]:GetPlayerData(source)
 
-        skillData[#skillData+1] = {
-            locale = "peuren_fishing",
-            xp = pData.Skill.xp,
-            level = pData.Skill.level
-        }
-    end
+            skillData[#skillData+1] = {
+                locale = "peuren_fishing",
+                xp = pData.Skill.xp,
+                level = pData.Skill.level
+            }
+        end
 
-    if GetResourceState("peuren_burglary") == "started" then
-        local hacking = exports["peuren_burglary"]:GetPlayerSkill(source, "hacking")
+        if GetResourceState("peuren_burglary") == "started" then
+            local hacking = exports["peuren_burglary"]:GetPlayerSkill(source, "hacking")
 
-        skillData[#skillData+1] = {
-            locale = "peuren_burglary_hacking",
-            xp = hacking.XP,
-            level = hacking.Level
-        }
+            skillData[#skillData+1] = {
+                locale = "peuren_burglary_hacking",
+                xp = hacking.XP,
+                level = hacking.Level
+            }
 
-        local lockpicking = exports["peuren_burglary"]:GetPlayerSkill(source, "lockpicking")
+            local lockpicking = exports["peuren_burglary"]:GetPlayerSkill(source, "lockpicking")
 
-        skillData[#skillData+1] = {
-            locale = "peuren_burglary_lockpicking",
-            xp = lockpicking.XP,
-            level = lockpicking.Level
-        }
+            skillData[#skillData+1] = {
+                locale = "peuren_burglary_lockpicking",
+                xp = lockpicking.XP,
+                level = lockpicking.Level
+            }
 
-        local looting = exports["peuren_burglary"]:GetPlayerSkill(source, "looting")
+            local looting = exports["peuren_burglary"]:GetPlayerSkill(source, "looting")
 
-        skillData[#skillData+1] = {
-            locale = "peuren_burglary_looting",
-            xp = looting.XP,
-            level = looting.Level
-        }
-    end
+            skillData[#skillData+1] = {
+                locale = "peuren_burglary_looting",
+                xp = looting.XP,
+                level = looting.Level
+            }
+        end
 
-    cb(skillData)
-end)
+        cb(skillData)
+    end)
 
-Core.Framework.RegisterCallback('peuren_lib:CreateEntity', function(source, cb, model, pos, args)
-    if not source or not model or not pos then return cb(false) end
+    Core.Framework.RegisterCallback('jraxion_lib:CreateEntity', function(source, cb, model, pos, args)
+        if not source or not model or not pos then return cb(false) end
 
-    local result = EntitySync.CreateEntity(model, pos, args or {})
-    if not result then return cb(false) end
+        local result = EntitySync.CreateEntity(model, pos, args or {})
+        if not result then return cb(false) end
 
-    cb(result)
-end)
+        cb(result)
+    end)
 
-Core.Framework.RegisterCallback('peuren_lib:CreatePed', function(source, cb, model, pos, args)
-    if not source or not model or not pos then return cb(false) end
+    Core.Framework.RegisterCallback('jraxion_lib:CreatePed', function(source, cb, model, pos, args)
+        if not source or not model or not pos then return cb(false) end
 
-    local result = EntitySync.CreatePed(model, pos, args or {})
-    if not result then return cb(false) end
+        local result = EntitySync.CreatePed(model, pos, args or {})
+        if not result then return cb(false) end
 
-    cb(result)
-end)
+        cb(result)
+    end)
 
-Core.Framework.RegisterCallback('peuren_lib:CreateVehicle', function(source, cb, model, pos, args)
-    if not source or not model or not pos then return cb(false) end
+    Core.Framework.RegisterCallback('jraxion_lib:CreateVehicle', function(source, cb, model, pos, args)
+        if not source or not model or not pos then return cb(false) end
 
-    local result = EntitySync.CreateVehicle(model, pos, args or {})
-    if not result then return cb(false) end
+        local result = EntitySync.CreateVehicle(model, pos, args or {})
+        if not result then return cb(false) end
 
-    cb(result)
-end)
+        cb(result)
+    end)
+end
 
 exports('GetResourceSessionToken', function(resourceName)
     if not resourceName then return nil end
-    
+
     return resourceName
 end)
 
 exports('ValidateResourceAccess', function(resourceName)
     if not resourceName then return nil end
-    
+
     return resourceName
 end)
-
-exports("Core", function() return Core end)
