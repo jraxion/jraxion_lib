@@ -2,16 +2,18 @@ Poly = {
     Data = {},
     ResourceZones = {},
 
-    AddBoxZone = function(pos, height, width, heading, cb)
+    AddBoxZone = function(pos, height, width, heading, cb, debugOverride)
         local invokingResource = GetInvokingResource() or GetCurrentResourceName()
         local id = "peuren_lib:"..math.random(100, 999)
 
-        if Poly.Data[id] then return Poly.AddBoxZone(pos, height, width, heading, cb) end
+        if Poly.Data[id] then return Poly.AddBoxZone(pos, height, width, heading, cb, debugOverride) end
+
+        local zoneDebug = debugOverride == true or Config.Debug == true
         
         Poly.Data[id] = BoxZone:Create(pos, height, width, {
             name = id,
             heading = heading,
-            debugPoly = Config.Debug,
+            debugPoly = zoneDebug,
             minZ = pos.z - height,
             maxZ = pos.z + height
         })

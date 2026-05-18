@@ -100,15 +100,17 @@ Target = {
             }
         end
 
+        local zoneDebug = boxData.debug == true or Config.Debug == true
+
         local id = exports[Config.TargetResource]:addBoxZone({
             name = boxData.name,
             coords = vector3(boxData.coords.x, boxData.coords.y, boxData.coords.z + boxData.size.z / 2),
             size = vector3(boxData.size.y, boxData.size.x, boxData.size.z),
             rotation = boxData.heading,
             options = tOptions,
-            debug = Config.Debug,
+            debug = zoneDebug,
             resource = GetInvokingResource(),
-            drawSprite = Config.Debug
+            drawSprite = zoneDebug,
         })
 
         Target.Zones[id] = true

@@ -115,11 +115,13 @@ Target = {
             }
         end
         
+        local zoneDebug = boxData.debug == true or Config.Debug == true
+
         local result = exports[Config.TargetResource]:AddBoxZone(boxData.name, boxData.coords, boxData.size.x, boxData.size.y, {
             resource = GetInvokingResource(),
             name = boxData.name,
             heading = boxData.heading,
-            debugPoly = Config.Debug,
+            debugPoly = zoneDebug,
             minZ = boxData.coords.z,
             maxZ = boxData.coords.z + boxData.size.z
         }, {

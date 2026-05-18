@@ -2,17 +2,19 @@ Poly = {
     Data = {},
     ResourceZones = {},
 
-    AddBoxZone = function(pos, height, width, heading, cb)
+    AddBoxZone = function(pos, height, width, heading, cb, debugOverride)
         local invokingResource = GetInvokingResource() or GetCurrentResourceName()
         local id = "peuren_lib:" .. math.random(100, 999)
 
-        if Poly.Data[id] then return Poly.AddBoxZone(pos, height, width, heading, cb) end
+        if Poly.Data[id] then return Poly.AddBoxZone(pos, height, width, heading, cb, debugOverride) end
+
+        local zoneDebug = debugOverride == true or Config.Debug == true
 
         Poly.Data[id] = lib.zones.box({
             coords = pos,
             size = vec3(height, width, height),
             rotation = heading,
-            debug = Config.Debug,
+            debug = zoneDebug,
             onEnter = function(self)
                 cb(true, self)
             end,
