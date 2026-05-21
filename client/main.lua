@@ -47,6 +47,8 @@ Core.Locale = locale
 Core.Print = Utils.Print
 Core.Utils = Utils
 
+ApplyClientCompat(Core)
+
 Core.LoadLocales()
 
 if Core.Notify then

@@ -4,37 +4,40 @@ Config.Debug = false -- Adds additional prints and enables all other resource de
 Config.Language = 'en' -- Language file name, this means, that it will only load files from script locales folders that contain this name, 
                        -- if this is an invalid locale name on a resource it will default to english
 
-Config.Framework = nil
+Config.Framework = 'auto'
 Config.IsOldESX = false --This option is needed if you are running an older version of ESX
-Config.FrameworkResource = nil -- Framework resource name
+Config.FrameworkResource = nil -- Framework resource name (auto-filled when using 'auto')
 --SUPPORTED FRAMEWORK NAMES TO PUT IN: Config.Framework = ""
 --[[
-    esx - (default resource name: es_extended)
-    qb - (default resource name: qb-core)
-    qbx - (Uncomment qbx_core export in peuren_lib/fxmanifest.lua file)
-    ox - (Uncomment ox_core imports in fxmanifest.lua file)
-    tmc - (default resource name: core)
+    'auto' - (RECOMMENDED) Scans your server and picks the correct framework automatically
+    esx    - (default resource name: es_extended)
+    qb     - (default resource name: qb-core)
+    qbx    - (Uncomment qbx_core export in jraxion_lib/fxmanifest.lua file)
+    ox     - (Uncomment ox_core imports in fxmanifest.lua file)
+    tmc    - (default resource name: core)
 ]]
 
-Config.SQLConnector = nil
+Config.SQLConnector = 'auto'
 --SUPPORTED SQL CONNECTOR NAMES TO PUT IN: Config.SQLConnector = ""
 --[[
+    'auto'       - (RECOMMENDED) Scans your server and picks the correct SQL connector automatically
     oxmysql
     mysql-async
     ghmattimysql
 ]]
 
-Config.Inventory = nil
-Config.InventoryResource = nil -- The inventory system folder name that you're using
+Config.Inventory = 'auto'
+Config.InventoryResource = nil -- The inventory system folder name that you're using (auto-filled when using 'auto')
 Config.CarryItemsEnabled = true -- Should the Carry Items system be enabled
 --SUPPORTED INVENTORY SCRIPT NAMES TO PUT IN: Config.Inventory = ""
 --[[
+    'auto'            - (RECOMMENDED) Scans your server and picks the correct inventory automatically
     tmc
     avp_inv_4
     mf-inventory
     esx_inventory
     qb-inventory
-    qb-inventory-new (for new versions of qb-inventory)
+    qb-inventory-new  (for new versions of qb-inventory)
     ox_inventory
     qs-inventory
     tgiann-inventory
@@ -43,76 +46,82 @@ Config.CarryItemsEnabled = true -- Should the Carry Items system be enabled
     jaksam_inventory
 ]]
 
-Config.Target = nil
-Config.TargetResource = nil -- The inventory system folder name that you're using
+Config.Target = 'auto'
+Config.TargetResource = nil -- The target system folder name that you're using (auto-filled when using 'auto')
 --SUPPORTED TARGET SCRIPT NAMES TO PUT IN: Config.Target  = ""
 --[[
+    'auto'    - (RECOMMENDED) Scans your server and picks the correct target system automatically
     qb-target
     ox_target
     qtarget
 ]]
 
-Config.ProgessBar = nil
-Config.ProgessBarResource = nil -- The menu system folder name that you're using
+Config.ProgessBar = 'auto'
+Config.ProgessBarResource = nil -- The progress bar system folder name that you're using (auto-filled when using 'auto')
 --SUPPORTED PROGRESS BAR SCRIPT NAMES TO PUT IN: Config.ProgessBar = ""
 --[[
+    'auto'  - (RECOMMENDED) Scans your server and picks the correct progress bar automatically
     tmc
-    ox_lib - (Uncomment ox_lib import in peuren_lib/fxmanifest.lua file)
+    ox_lib  - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
     qb
     tgiann
 ]]
 
-Config.Menu = nil
-Config.MenuResource = nil -- The menu system folder name that you're using
+Config.Menu = 'auto'
+Config.MenuResource = nil -- The menu system folder name that you're using (auto-filled when using 'auto')
 --SUPPORTED MENU SCRIPT NAMES TO PUT IN: Config.Menu = ""
 --[[
+    'auto'          - (RECOMMENDED) Scans your server and picks the correct menu system automatically
     tmc
     ps-ui
-    ox_lib - (Uncomment ox_lib import in peuren_lib/fxmanifest.lua file)
+    ox_lib          - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
     qb
     nh-context
     esx_menu_default
     esx_context
 ]]
 
-Config.Input = nil
-Config.InputResource = nil -- The input system folder name that you're using
+Config.Input = 'auto'
+Config.InputResource = nil -- The input system folder name that you're using (auto-filled when using 'auto')
 --SUPPORTED INPUT SCRIPT NAMES TO PUT IN: Config.Input = ""
 --[[
-    ox_lib - (Uncomment ox_lib import in peuren_lib/fxmanifest.lua file)
+    'auto'    - (RECOMMENDED) Scans your server and picks the correct input system automatically
+    ox_lib    - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
     qb-input
     nh-keyboard
 ]]
 
-Config.TextUI = nil
-Config.TextUIResource = nil -- The TextUI system folder name that you're using
+Config.TextUI = 'auto'
+Config.TextUIResource = nil -- The TextUI system folder name that you're using (auto-filled when using 'auto')
 --SUPPORTED TEXT UI SCRIPT NAMES TO PUT IN: Config.TextUI = ""
 --[[
+    'auto'      - (RECOMMENDED) Scans your server and picks the correct TextUI system automatically
     ps-ui
-    ox_lib - (Uncomment ox_lib import in peuren_lib/fxmanifest.lua file)
+    ox_lib      - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
     okokTextUI
     jg-textui
     qb
 ]]
 
-Config.Poly = nil
-Config.PolyResource = nil -- The Polyzone system folder name that you're using
+Config.Poly = 'auto'
+Config.PolyResource = nil -- The Polyzone system folder name that you're using (auto-filled when using 'auto')
 --SUPPORTED ZONE SCRIPT NAMES TO PUT IN: Config.Poly = ""
 --[[
+    'auto'    - (RECOMMENDED) Scans your server and picks the correct zone system automatically
     polyzone
-    ox_lib - (Uncomment ox_lib import in peuren_lib/fxmanifest.lua file)
-    okokTextUI
+    ox_lib    - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
     qb
 ]]
 
-Config.Notifications = nil
-Config.NotificationsResource = nil -- The notification system folder name that you're using
+Config.Notifications = 'auto'
+Config.NotificationsResource = nil -- The notification system folder name that you're using (auto-filled when using 'auto')
 --SUPPORTED NOTIFICATION SCRIPT NAMES TO PUT IN: Config.Notifications = ""
 --[[
+    'auto'       - (RECOMMENDED) Scans your server and picks the correct notification system automatically
     tmc
     peuren_notify
     ps-ui
-    ox_lib - (Uncomment ox_lib import in peuren_lib/fxmanifest.lua file)
+    ox_lib       - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
     qb
     esx
     okok
@@ -123,10 +132,11 @@ Config.NotificationsResource = nil -- The notification system folder name that y
     vms_notifyv2
 ]]
 
-Config.WeatherSync = nil
-Config.WeatherSyncResource = nil -- The weather sync system resource folder name
+Config.WeatherSync = 'auto'
+Config.WeatherSyncResource = nil -- The weather sync system resource folder name (auto-filled when using 'auto')
 --SUPPORTED WEATHER SYNC SCRIPT NAMES TO PUT IN: Config.WeatherSync = ""
 --[[
+    'auto'             - (RECOMMENDED) Scans your server and picks the correct weather sync automatically
     tmc
     renewed-weathersync
     qb-weathersync
@@ -135,10 +145,11 @@ Config.WeatherSyncResource = nil -- The weather sync system resource folder name
     cs_weather
 ]]
 
-Config.Dispatch = nil
-Config.DispatchResource = nil -- The dispatch system resource folder name
+Config.Dispatch = 'auto'
+Config.DispatchResource = nil -- The dispatch system resource folder name (auto-filled when using 'auto')
 --SUPPORTED DISPATCH SCRIPT NAMES TO PUT IN: Config.Dispatch = ""
 --[[
+    'auto'       - (RECOMMENDED) Scans your server and picks the correct dispatch system automatically
     tmc
     p_mdt
     lb-tablet
@@ -148,7 +159,7 @@ Config.DispatchResource = nil -- The dispatch system resource folder name
     rcore_dispatch
     cd_dispatch
     core_dispatch
-    default - standalon version, not recommended for productions servers without changes to the code
+    default      - standalone version, not recommended for production servers without code changes
     outwalter
     ps-dispatch
     qs-dispatch
@@ -157,10 +168,11 @@ Config.DispatchResource = nil -- The dispatch system resource folder name
     op-dispatch
 ]]
 
-Config.Fuel = nil
-Config.FuelResource = nil -- The fuel system resource folder name
+Config.Fuel = 'auto'
+Config.FuelResource = nil -- The fuel system resource folder name (auto-filled when using 'auto')
 --SUPPORTED FUEL SCRIPT NAMES TO PUT IN: Config.Fuel = ""
 --[[
+    'auto'          - (RECOMMENDED) Scans your server and picks the correct fuel system automatically
     tmc
     okokGasStation
     LegacyFuel
@@ -182,10 +194,11 @@ Config.FuelResource = nil -- The fuel system resource folder name
     lyre_fuel
 ]]
 
-Config.VehicleKeys = nil
-Config.VehicleKeysResource = nil -- The vehicle key system resource folder name
+Config.VehicleKeys = 'auto'
+Config.VehicleKeysResource = nil -- The vehicle key system resource folder name (auto-filled when using 'auto')
 --SUPPORTED VEHICLE KEY SCRIPT NAMES TO PUT IN: Config.VehicleKeys = ""
 --[[
+    'auto'             - (RECOMMENDED) Scans your server and picks the correct vehicle key system automatically
     jaksam
     tmc
     MrNewbVehicleKeys
@@ -208,10 +221,11 @@ Config.VehicleKeysResource = nil -- The vehicle key system resource folder name
     ak47_vehiclekeys
 ]]
 
-Config.Clothing = nil
-Config.ClothingResource = nil -- The clothing system resource folder name
+Config.Clothing = 'auto'
+Config.ClothingResource = nil -- The clothing system resource folder name (auto-filled when using 'auto')
 --SUPPORTED CLOTHING SCRIPT NAMES TO PUT IN: Config.Clothing = ""
 --[[
+    'auto'           - (RECOMMENDED) Scans your server and picks the correct clothing system automatically
     peuren_appearance
     tmc
     crm-appearance
@@ -225,31 +239,33 @@ Config.ClothingResource = nil -- The clothing system resource folder name
     rcore_clothing
 ]]
 
-Config.VehicleProperties = nil--Recommended to use ox_lib for vehicle properties, but you can use other resources as well.
-Config.VehiclePropertiesResource = nil -- The vehicle properties system resource folder name
+Config.VehicleProperties = 'auto' -- Recommended to use ox_lib for vehicle properties, but you can use other resources as well.
+Config.VehiclePropertiesResource = nil -- The vehicle properties system resource folder name (auto-filled when using 'auto')
 --SUPPORTED VEHICLE PROPERTIES SCRIPT NAMES TO PUT IN: Config.VehicleProperties = ""
 --[[
-    ox_lib - (Uncomment ox_lib import in peuren_lib/fxmanifest.lua file)
+    'auto' - (RECOMMENDED) Scans your server and picks the correct vehicle properties system automatically
+    ox_lib - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
     qb
     qbx
     esx
 
 ]]
 
-Config.Logger = 'discord' -- Logger system resource name
+Config.Logger = 'auto' -- Logger system resource name
 --SUPPORTED LOGGER SCRIPT NAMES TO PUT IN: Config.Logger = ""
 --[[
+    'auto'  - (RECOMMENDED) Scans your server and picks the correct logger automatically
     discord
-    ox_lib - (Uncomment ox_lib import in peuren_lib/fxmanifest.lua file)
+    ox_lib  - (Uncomment ox_lib import in jraxion_lib/fxmanifest.lua file)
 ]]
 
 
 Config.SkillMenu = { -- Configuration for skill menu.
     Enabled = true, -- Should the Skill Menu be enabled
-    Command = "skills" -- The comand which opens the skill menu. Set this to false to disable it. Skill menu can be also opened by using exports["peuren_lib"]:OpenSkillMenu()
+    Command = "skills" -- The comand which opens the skill menu. Set this to false to disable it. Skill menu can be also opened by using exports["jraxion_lib"]:OpenSkillMenu()
 }
 
-Config.Groups = { -- Configuration for multiplier jobs (peuren only)
+Config.Groups = { -- Configuration for multiplier jobs (jraxion only)
     MemberLimit = 4,--Default maximum group member amount in a group
     Timeout = { min = 0, sec = 30 }, --The time in which the group owner has to return to game before assigning a new group leader
     password = {
@@ -263,6 +279,14 @@ Config.EnableVehicleWhiteList = false -- Enable vehicle whitelist for jobs, this
 
 
 -- !!! DO NOT TOUCH ANYTHING BELOW THIS UNLESS YOU KNOW WHAT YOU ARE DOING !!!
+
+-- Sentinel value: any field set to this string (or left nil) will be auto-scanned.
+local AUTO = 'auto'
+
+local function ShouldAutoDetect(value)
+    return value == nil or value == AUTO
+end
+
 local function AutoOption(module, resources)
     if type(resources) == "string" then
         resources = { resources }
@@ -479,8 +503,19 @@ local function AutoDetectConfig()
 
     Config.AutoDetected = Config.AutoDetected or {}
 
+    -- Track which keys were explicitly set to 'auto' so we can warn on miss
+    local explicitAuto = {}
+
     for _, category in ipairs(categories) do
-        if Config[category.key] == nil then
+        local currentValue = Config[category.key]
+
+        if ShouldAutoDetect(currentValue) then
+            -- Record if the customer explicitly wrote 'auto' (vs just leaving it nil)
+            if currentValue == AUTO then
+                explicitAuto[category.key] = true
+            end
+
+            -- Run detection
             for _, option in ipairs(category.options) do
                 local detectedResource = DetectResource(option)
 
@@ -493,22 +528,57 @@ local function AutoDetectConfig()
 
                     Config.AutoDetected[category.key] = option.module
 
-                    DebugPrint(string.format("[peuren_lib] Auto-detected %s -> %s (%s)", category.key, option.module, detectedResource))
+                    DebugPrint(string.format("[jraxion_lib] Auto-detected %s -> %s (%s)", category.key, option.module, detectedResource))
                     break
                 end
+            end
+
+            -- Warn when the customer explicitly requested 'auto' but nothing was found
+            if explicitAuto[category.key] and Config[category.key] == AUTO then
+                print(string.format("^3[jraxion_lib] WARNING: Config.%s is set to 'auto' but no supported resource was detected. The module will be disabled.^0", category.key))
+                Config[category.key] = nil -- normalise to nil so LoadModule skips gracefully
             end
         end
     end
 
-    if Config.Dispatch == nil then
+    -- Dispatch special-case: fall back to 'default' (built-in) when still unresolved
+    if ShouldAutoDetect(Config.Dispatch) or Config.Dispatch == AUTO then
         Config.Dispatch = "default"
 
         if Config.DispatchResource == nil or Config.DispatchResource == "" then
-            Config.DispatchResource = GetCurrentResourceName and GetCurrentResourceName() or "peuren_lib"
+            Config.DispatchResource = GetCurrentResourceName and GetCurrentResourceName() or "jraxion_lib"
         end
 
         Config.AutoDetected.Dispatch = "default"
-        DebugPrint("[peuren_lib] Auto-detected Dispatch -> default (fallback)")
+        DebugPrint("[jraxion_lib] Auto-detected Dispatch -> default (fallback)")
+    end
+
+    -- ── Startup resolution summary (always visible, not gated by Debug) ──────
+    local resourceName = (GetCurrentResourceName and GetCurrentResourceName()) or "jraxion_lib"
+    print(string.format("^5[%s] ^2Auto-configuration complete:^0", resourceName))
+
+    local summaryOrder = {
+        "Framework", "SQLConnector", "Inventory", "Target", "ProgessBar",
+        "Menu", "Input", "TextUI", "Poly", "Notifications",
+        "WeatherSync", "Dispatch", "Fuel", "VehicleKeys",
+        "Clothing", "VehicleProperties", "Logger"
+    }
+
+    for _, key in ipairs(summaryOrder) do
+        local value = Config[key]
+        local wasAuto = Config.AutoDetected[key] ~= nil
+
+        if value == nil then
+            if explicitAuto[key] then
+                -- Already warned above; show as disabled in summary
+                print(string.format("  ^1%-20s -> NOT FOUND (disabled)^0", key))
+            end
+            -- silently skip keys that were never set and still nil (user intentionally omitted)
+        elseif wasAuto then
+            print(string.format("  ^2%-20s -> %s ^8(auto-detected)^0", key, value))
+        else
+            print(string.format("  ^7%-20s -> %s ^8(manual)^0", key, value))
+        end
     end
 end
 

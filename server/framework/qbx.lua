@@ -146,9 +146,12 @@ Framework = {
     },
 }
 
-lib.callback.register('jraxion_lib:SpawnVehicle', function(player, model, pos)
+local function spawnVehicleCallback(player, model, pos)
     local netId = qbx.spawnVehicle({ model = model, spawnSource = pos })
     return netId
-end)
+end
+
+lib.callback.register('jraxion_lib:SpawnVehicle', spawnVehicleCallback)
+lib.callback.register('peuren_lib:SpawnVehicle', spawnVehicleCallback)
 
 return Framework

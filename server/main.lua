@@ -80,6 +80,8 @@ Core.GetLocales = getLocales
 Core.Print = Utils.Print
 Core.Utils = Utils
 
+ApplyServerCompat(Core)
+
 if Core.Framework and Core.Framework.RegisterCallback then
     Core.Framework.RegisterCallback("jraxion_lib:GetSkillData", function(source, cb)
         local skillData = {}

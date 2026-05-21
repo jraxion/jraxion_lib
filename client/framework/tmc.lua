@@ -93,6 +93,7 @@ Debug('Player loaded state: ' .. tostring(Framework.PlayerLoaded))
 AddEventHandler('TMC:Client:OnPlayerLoaded', function()
     Debug('Player loaded event received')
     TriggerEvent('peuren_lib:PlayerLoaded')
+    TriggerEvent('jraxion_lib:PlayerLoaded')
     Framework.PlayerLoaded = true
     Debug('Framework.PlayerLoaded set to true')
 end)
