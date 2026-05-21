@@ -1,0 +1,60 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read version from fxmanifest
+        id: meta
+        run: |
+          VERSION=$(grep -E "^\s*version\s+" fxmanifest.lua | head -1 | sed -E "s/.*['\"]([^'\"]+)['\"].*/\1/")
+          if [ -z "$VERSION" ]; then
+            echo "Could not read version from fxmanifest.lua" >&2
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v${VERSION}-build.${GITHUB_RUN_NUMBER}" >> "$GITHUB_OUTPUT"
+          echo "zip_name=jraxion_lib-v${VERSION}.zip" >> "$GITHUB_OUTPUT"
+
+      - name: Package jraxion_lib (drag-and-drop folder)
+        run: |
+          mkdir -p dist/jraxion_lib
+          rsync -a ./ dist/jraxion_lib/ \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='dist' \
+            --exclude='*.zip'
+          cd dist
+          zip -r "../${{ steps.meta.outputs.zip_name }}" jraxion_lib
+          unzip -l "../${{ steps.meta.outputs.zip_name }}" | head -20
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.meta.outputs.tag }}
+          name: jraxion_lib v${{ steps.meta.outputs.version }} (build ${{ github.run_number }})
+          body: |
+            ## Install
+
+            1. Download **${{ steps.meta.outputs.zip_name }}** below.
+            2. Extract the zip — you will get a folder named **`jraxion_lib`** (not `jraxion_lib-main`).
+            3. Drag **`jraxion_lib`** into your server's `resources` folder.
+            4. Add `ensure jraxion_lib` to your `server.cfg`.
+
+            **Build:** ${{ github.run_number }}  
+            **Commit:** [`${{ github.sha }}`](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})
+          files: ${{ steps.meta.outputs.zip_name }}
+          generate_release_notes: true
+          fail_on_unmatched_files: true
